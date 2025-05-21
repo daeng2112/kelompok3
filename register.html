@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar Pengguna Mall Mallekires</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: -8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Daftar Pengguna Baru</h2>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Nama Pengguna" required />
+      <input type="password" id="password" placeholder="Kata Sandi" required />
+      <input type="text" id="plat" placeholder="Plat Mobil" required />
+      <div class="error" id="errorMsg"></div>
+      <button type="submit">Daftar & Masuk</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const plat = document.getElementById("plat").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (!username || !password || !plat) {
+        errorMsg.innerText = "Semua kolom harus diisi.";
+        return;
+      }
+
+      // Simpan ke sessionStorage (bisa juga ke server jika tersedia)
+      sessionStorage.setItem("userData", JSON.stringify({
+        username, password, plat
+      }));
+
+      // Redirect ke dashboard
+      window.location.href = "dashboard.html";
+    });
+  </script>
+
+</body>
+</html>

@@ -193,7 +193,8 @@
       `Selamat datang, ${user.username} (Plat: ${user.plat})`;
 
     // WebSocket untuk menerima data realtime
-    const ws = new WebSocket("ws://localhost:1880/ws/parkir");
+    const ws = new WebSocket("wss://f59f-103-138-49-172.ngrok-free.app/ws/parkir");
+
 
     ws.onmessage = function(event) {
       const data = JSON.parse(event.data);
